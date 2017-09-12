@@ -1,0 +1,31 @@
+{
+    "name": "CheAlex/ecomitize-task",
+    "description": "Ecomitize garage",
+    "license": "MIT",
+    "type": "project",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Chernoivan Alexey"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CheAlex\\": "src/CheAlex/"
+        }
+    },
+    "require": {
+        "php": "^7.1",
+        "phpspec/prophecy": "^1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.3"
+    },
+    "config": {
+        "platform": {
+            "php": "7.1"
+        },
+        "sort-packages": true
+    }
+}

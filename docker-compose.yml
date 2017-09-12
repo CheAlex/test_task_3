@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    php:
+        container_name: ecomitize_task.php_1
+        build:
+            context: ./docker/php
+        volumes:
+            - ./application:/application
+        tty: true
+        working_dir: /application
+        env_file: .env
