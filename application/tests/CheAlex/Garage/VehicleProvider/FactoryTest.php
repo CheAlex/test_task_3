@@ -33,7 +33,7 @@ class FactoryTest extends TestCase
         $this->factory = new Factory($this->dataSource->reveal());
     }
 
-    public function testGetVehiclesValidDataValidResult()
+    public function testGetVehicles_validData()
     {
         $data = [
             [
@@ -67,7 +67,7 @@ class FactoryTest extends TestCase
         $this->assertEquals(4, $count);
     }
 
-    public function testGetVehiclesDataWithoutNameThrowException()
+    public function testGetVehicles_dataWithoutNameThrowException()
     {
         $this->dataSource->getData()->shouldBeCalledTimes(1)->willReturn([
             [
@@ -81,7 +81,7 @@ class FactoryTest extends TestCase
         foreach ($this->factory->getVehicles() as $vehicle) {}
     }
 
-    public function testGetVehiclesDataWithoutTypeThrowException()
+    public function testGetVehicles_dataWithoutTypeThrowException()
     {
         $this->dataSource->getData()->shouldBeCalledTimes(1)->willReturn([
             [
@@ -95,7 +95,7 @@ class FactoryTest extends TestCase
         foreach ($this->factory->getVehicles() as $vehicle) {}
     }
 
-    public function testGetVehiclesDataWrongTypeThrowException()
+    public function testGetVehicles_dataWrongTypeThrowException()
     {
         $this->dataSource->getData()->shouldBeCalledTimes(1)->willReturn([
             [

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace CheAlex\Di;
 
@@ -27,7 +28,7 @@ class DiContainer implements DiContainerInterface
     {
         if (!array_key_exists($serviceId, $this->services)) {
             if (!$this->has($serviceId)) {
-                throw new Exception(sprintf('Service "%s" is undefined.'));
+                throw new Exception(sprintf('Service "%s" is undefined.', $serviceId));
             }
 
             $this->services[$serviceId] = $this->definitions[$serviceId]->call($this);
@@ -59,7 +60,7 @@ class DiContainer implements DiContainerInterface
     public function loadFromFile(string $filePath)
     {
         if (!is_readable($filePath)) {
-            throw new Exception(sprintf('File "%s" not exists or not readable'));
+            throw new Exception(sprintf('File "%s" is not exists or is not readable.', $filePath));
         }
 
         $di = $this;

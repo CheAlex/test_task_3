@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  */
 class PhpArrayDataSourceTest extends TestCase
 {
-    public function testGetDataValidFixture(): void
+    public function testGetData_validFixture(): void
     {
         $dataSource = new PhpArrayDataSource(__DIR__.'/fixtures/vehicles.php');
         $data = $dataSource->getData();
@@ -21,7 +21,7 @@ class PhpArrayDataSourceTest extends TestCase
         $this->assertInternalType('array', $data);
     }
 
-    public function testGetDataNotExistFixtureFailure(): void
+    public function testGetData_notExistFixture(): void
     {
         $dataSource = new PhpArrayDataSource(__DIR__.'/fixtures/not_exist_file.php');
         $this->expectException(Exception::class);
@@ -30,7 +30,7 @@ class PhpArrayDataSourceTest extends TestCase
         $dataSource->getData();
     }
 
-    public function testGetDataFixtureReturnNotArrayFailure(): void
+    public function testGetData_fixtureReturnNotArray(): void
     {
         $dataSource = new PhpArrayDataSource(__DIR__.'/fixtures/fixture_return_not_array.php');
         $this->expectException(Exception::class);
