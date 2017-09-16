@@ -1,9 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use CheAlex\Garage\VehicleProvider\Factory;
-use CheAlex\Garage\DataSource\PhpArrayDataSource;
-use CheAlex\Garage\Logger\EchoLogger;
+use CheAlex\Di\DiContainer;
 use CheAlex\Garage\Garage;
 
 ini_set('display_errors', true);
@@ -11,17 +9,10 @@ error_reporting(E_ALL);
 
 require __DIR__.'/../vendor/autoload.php';
 
-$fixturesFilePath = getenv('ECOMOTIZE_TASK_VEHICLES_FIXTURES_FILE_PATH');
+$diContainer = new DiContainer();
+$diContainer->loadFromFile(__DIR__.'/../app/config/services.php');
 
-$factory = new Factory(
-    new PhpArrayDataSource($fixturesFilePath)
-);
-
-$logger = new EchoLogger();
-$garage = new Garage('Ecomotize garage', $logger);
-
-foreach ($factory->getVehicles() as $vehicle) {
-    $garage->addVehicle($vehicle);
-}
+/** @var Garage $garage */
+$garage = $diContainer->get('che_alex.garage.garage');
 
 $garage->work();
